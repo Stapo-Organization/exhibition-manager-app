@@ -5,9 +5,13 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     // Firebase (FCM) — processes android/app/google-services.json.
-    id("com.google.gms.google-services")
+    id("com.google.gms.google-services") apply false
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
 }
 
 val keystoreProperties = Properties()
